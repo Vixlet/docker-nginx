@@ -17,9 +17,11 @@ Serve content with a highly customizable Nginx server; designed for use with AWS
 ## Overview
 This is a minimal Docker image for running Nginx in a highly customizable manner, by making use of a bash script with hooks as the container's run command. It's meant primarily as a workaround for AWS ElasticBeanstalk's lack of a way to specify a `run` command for a Docker container, and is designed for all hosted content and configuration files to be provided via mounted directories.
 
+
 ## Base Docker Image
 - [nginx:1.7.9](https://registry.hub.docker.com/_/nginx/)
     + [Nginx Official Dockerfile](https://github.com/nginxinc/docker-nginx/blob/master/Dockerfile)
+
 
 ## Usage
 1. If you haven't already, install [Docker](https://www.docker.com/)
@@ -76,5 +78,4 @@ To use a custom pre-start script, simply provide an executable file in your work
 
 
 ## License
-
 ISC © [Vixlet CA LLC](http://www.vixlet.com/)
