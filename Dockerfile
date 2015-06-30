@@ -19,4 +19,6 @@ COPY  ./start.sh /start.sh
 WORKDIR  /var/app
 
 # Start nginx
-CMD  [ "/start.sh" ]
+CMD  /start.sh \
+     && echo "Starting Nginx..." \
+     && exec nginx -g "daemon off;"

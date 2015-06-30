@@ -26,8 +26,3 @@ if [ -x ${DOCKER_PRESTART_SCRIPT} ]; then
   test $? && echo "Running docker prestart script..." \
      && ${DOCKER_PRESTART_SCRIPT}
 fi
-
-
-# Start Nginx
-test $? && echo "Starting Nginx..." \
-   && nginx -g "daemon off;"
