@@ -19,7 +19,7 @@ This is a minimal Docker image for running Nginx in a highly customizable manner
 
 
 ## Base Docker Image
-- [nginx:1.7.9](https://registry.hub.docker.com/_/nginx/)
+- [nginx:1.9.2](https://registry.hub.docker.com/_/nginx/)
     + [Nginx Official Dockerfile](https://github.com/nginxinc/docker-nginx/blob/master/Dockerfile)
 
 
