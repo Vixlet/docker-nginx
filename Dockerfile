@@ -1,5 +1,5 @@
 # Source image
-FROM  nginx:1.9.2
+FROM  nginx:1.10
 
 # Increate system ulimit
 COPY  ./limits.conf /etc/security/limits.conf
