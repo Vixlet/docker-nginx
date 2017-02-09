@@ -20,9 +20,4 @@ COPY  conf.d/* /etc/nginx/conf.d/
 COPY  root/envsubst /root/envsubst
 COPY  root/entry /root/entry
 COPY  root/test /root/test
-RUN  ls /etc/nginx/nginx.conf.template | /root/envsubst \
-  && ls /etc/nginx/conf.d/*.conf.template | /root/envsubst \
-  && ls /etc/nginx/includes.d/*.conf.template | /root/envsubst \
-  && ls /etc/nginx/sites-available/*.conf.template | /root/envsubst \
-  && ls /etc/nginx/sites-enabled/*.conf.template | /root/envsubst \
 ENTRYPOINT  ["/root/entry"]
