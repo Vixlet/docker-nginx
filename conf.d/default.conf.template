@@ -2,6 +2,8 @@ server {
     listen       ${NGINX_PORT};
     server_name  ${NGINX_HOST};
 
+    autoindex  ${DEVELOPMENT_MODE};
+
     #charset koi8-r;
     #access_log  /var/log/nginx/log/host.access.log  main;
 
