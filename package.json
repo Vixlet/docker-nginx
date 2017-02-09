@@ -10,12 +10,19 @@
   "scripts": {
     "pull": "docker pull vixlet/nginx:alpine",
     "build": "docker build -t vixlet/nginx:alpine .",
-    "test": "docker run -it --rm vixlet/nginx:alpine /root/test",
+    "test": "npm-run-all test-*",
+    "test-basic": "docker run -it --rm vixlet/nginx:alpine /root/test",
+    "test-gzip": "docker run -it --rm vixlet/nginx:alpine /bin/sh -c 'mv /etc/nginx/conf.d/gzip.conf.default /etc/nginx/conf.d/gzip.conf; /root/test'",
+    "test-proxy": "docker run -it --rm vixlet/nginx:alpine /bin/sh -c 'mv /etc/nginx/conf.d/proxy.conf.default /etc/nginx/conf.d/proxy.conf; /root/test'",
+    "test-all": "docker run -it --rm vixlet/nginx:alpine /bin/sh -c 'mv /etc/nginx/conf.d/gzip.conf.default /etc/nginx/conf.d/gzip.conf; mv /etc/nginx/conf.d/proxy.conf.default /etc/nginx/conf.d/proxy.conf; /root/test'",
     "shell": "docker run -it --rm vixlet/nginx:alpine /bin/sh"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Vixlet/docker-node.git"
   },
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "npm-run-all": "^4.0.1"
+  }
 }
