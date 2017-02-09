@@ -1,0 +1,19 @@
+## ------------------------------------------------------------------------ ##
+#
+#  A CORS (Cross-Origin Resouce Sharing) config for nginx
+#
+#  @link: https://gist.github.com/algal/5480916
+#  @block http
+#
+## ------------------------------------------------------------------------ ##
+
+map  $http_origin  $cors {
+  default  "true";
+}
+
+map  $request_method$cors  $cors_mode {
+  default  "";
+  "gettrue"  "get";
+  "posttrue"  "post";
+  "optionstrue"  "options";
+}

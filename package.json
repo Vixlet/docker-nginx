@@ -14,7 +14,8 @@
     "test-basic": "docker run -it --rm vixlet/nginx:alpine /root/test",
     "test-gzip": "docker run -it --rm vixlet/nginx:alpine /bin/sh -c 'mv /etc/nginx/conf.d/gzip.conf.default /etc/nginx/conf.d/gzip.conf; /root/test'",
     "test-proxy": "docker run -it --rm vixlet/nginx:alpine /bin/sh -c 'mv /etc/nginx/conf.d/proxy.conf.default /etc/nginx/conf.d/proxy.conf; /root/test'",
-    "test-all": "docker run -it --rm vixlet/nginx:alpine /bin/sh -c 'mv /etc/nginx/conf.d/gzip.conf.default /etc/nginx/conf.d/gzip.conf; mv /etc/nginx/conf.d/proxy.conf.default /etc/nginx/conf.d/proxy.conf; /root/test'",
+    "test-cors": "docker run -it --rm vixlet/nginx:alpine /bin/sh -c 'mv /etc/nginx/conf.d/cors.conf.default /etc/nginx/conf.d/cors.conf; /root/test'",
+    "test-all": "docker run -it --rm vixlet/nginx:alpine /bin/sh -c 'mv /etc/nginx/conf.d/gzip.conf.default /etc/nginx/conf.d/gzip.conf; mv /etc/nginx/conf.d/proxy.conf.default /etc/nginx/conf.d/proxy.conf; mv /etc/nginx/conf.d/cors.conf.default /etc/nginx/conf.d/cors.conf; /root/test'",
     "shell": "docker run -it --rm vixlet/nginx:alpine /bin/sh"
   },
   "repository": {

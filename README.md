@@ -61,7 +61,9 @@ COPY  dist /usr/share/nginx/html
 FROM  vixlet/nginx:alpine
 RUN  rm /etc/nginx/conf.d/*.conf.template \
   && mv /etc/nginx/conf.d/gzip.conf.default /etc/nginx/conf.d/gzip.conf \
-  && mv /etc/nginx/conf.d/proxy.conf.default /etc/nginx/conf.d/proxy.conf
+  && mv /etc/nginx/conf.d/proxy.conf.default /etc/nginx/conf.d/proxy.conf \
+  && mv /etc/nginx/conf.d/cors.conf.default /etc/nginx/conf.d/cors.conf \
+  && mv /etc/nginx/includes.d/cors.conf.default /etc/nginx/includes.d/cors.conf
 ENV  ENV_SUBSTITUTE='$MY_VAR_1:$MY_VAR_2'
 COPY  site.conf /etc/nginx/sites-enabled/site.conf.template
 COPY  dist /usr/share/nginx/html
