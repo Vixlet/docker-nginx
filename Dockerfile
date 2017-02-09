@@ -1,10 +1,9 @@
 FROM  nginx:alpine
 WORKDIR  /usr/share/nginx/html
 EXPOSE  80
-ENV  PRODUCTION_MODE=on
-ENV  DEVELOPMENT_MODE=off
-ENV  NGINX_HOST=localhost
-ENV  NGINX_PORT=80
+ENV  PRODUCTION_MODE='on'
+ENV  NGINX_HOST='localhost'
+ENV  NGINX_PORT='80'
 RUN  mkdir -p /etc/nginx/logs \
      /etc/nginx/conf.d \
      /etc/nginx/includes.d \

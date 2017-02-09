@@ -1,10 +1,11 @@
 #!/bin/sh
 if [[ "$PRODUCTION_MODE" == 'off' ]]; then
-  DEVELOPMENT_MODE='on'
+  export DEVELOPMENT_MODE='on'
 else
-  DEVELOPMENT_MODE='off'
+  export DEVELOPMENT_MODE='off'
 fi
-echo "Substituting environment variables..." \
+export ENV_SUBSTITUTE="${ENV_SUBSTITUTE:-'\$PRODUCTION_MODE:\$DEVELOPMENT_MODE:\$NGINX_HOST:\$NGINX_PORT'}"
+echo "Substituting the following environment variables... $ENV_SUBSTITUTE" \
   && ls /etc/nginx/nginx.conf.template | /root/envsubst \
   && ls /etc/nginx/conf.d/*.conf.template | /root/envsubst \
   && ls /etc/nginx/includes.d/*.conf.template | /root/envsubst \
