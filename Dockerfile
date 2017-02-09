@@ -17,6 +17,7 @@ RUN  mkdir -p /etc/nginx/logs \
 COPY  nginx.conf.template /etc/nginx/
 COPY  conf.d/* /etc/nginx/conf.d/
 COPY  includes.d/* /etc/nginx/includes.d/
+COPY  sites-enabled/* /etc/nginx/sites-enabled/
 COPY  root/envsubst /root/envsubst
 COPY  root/entry /root/entry
 COPY  root/test /root/test

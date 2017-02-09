@@ -32,34 +32,34 @@ COPY  dist /usr/share/nginx/html
 ### Much less basic
 ```dockerfile
 FROM  vixlet/nginx:alpine
-RUN  rm /etc/nginx/conf.d/*.conf.template
-COPY  site.conf /etc/nginx/conf.d/
+RUN  rm /etc/nginx/sites-enabled/*.conf.template
+COPY  site.conf /etc/nginx/sites-enabled/
 COPY  dist /usr/share/nginx/html
 ```
 
 ### "Gee zip" edition
 ```dockerfile
 FROM  vixlet/nginx:alpine
-RUN  rm /etc/nginx/conf.d/*.conf.template \
+RUN  rm /etc/nginx/sites-enabled/*.conf.template \
   && mv /etc/nginx/conf.d/gzip.conf.default /etc/nginx/conf.d/gzip.conf
-COPY  site.conf /etc/nginx/conf.d/
+COPY  site.conf /etc/nginx/sites-enabled/
 COPY  dist /usr/share/nginx/html
 ```
 
 ### "Series of tubes" edition
 ```dockerfile
 FROM  vixlet/nginx:alpine
-RUN  rm /etc/nginx/conf.d/*.conf.template \
+RUN  rm /etc/nginx/sites-enabled/*.conf.template \
   && mv /etc/nginx/conf.d/gzip.conf.default /etc/nginx/conf.d/gzip.conf \
   && mv /etc/nginx/conf.d/proxy.conf.default /etc/nginx/conf.d/proxy.conf
-COPY  site.conf /etc/nginx/conf.d/
+COPY  site.conf /etc/nginx/sites-enabled/
 COPY  dist /usr/share/nginx/html
 ```
 
 ### "Kitchen sink" edition
 ```dockerfile
 FROM  vixlet/nginx:alpine
-RUN  rm /etc/nginx/conf.d/*.conf.template \
+RUN  rm /etc/nginx/sites-enabled/*.conf.template \
   && mv /etc/nginx/conf.d/gzip.conf.default /etc/nginx/conf.d/gzip.conf \
   && mv /etc/nginx/conf.d/proxy.conf.default /etc/nginx/conf.d/proxy.conf \
   && mv /etc/nginx/conf.d/cors.conf.default /etc/nginx/conf.d/cors.conf \
