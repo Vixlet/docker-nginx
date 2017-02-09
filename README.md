@@ -56,12 +56,25 @@ COPY  site.conf /etc/nginx/conf.d/
 COPY  dist /usr/share/nginx/html
 ```
 
+### "Kitchen sink" edition
+```dockerfile
+FROM  vixlet/nginx:alpine
+RUN  rm /etc/nginx/conf.d/*.conf.template \
+  && mv /etc/nginx/conf.d/gzip.conf.default /etc/nginx/conf.d/gzip.conf \
+  && mv /etc/nginx/conf.d/proxy.conf.default /etc/nginx/conf.d/proxy.conf
+ENV  ENV_SUBSTITUTE='$MY_VAR_1:$MY_VAR_2'
+COPY  site.conf /etc/nginx/sites-enabled/site.conf.template
+COPY  dist /usr/share/nginx/html
+```
+
 ## Environment variables
 | Name | Values | Description |
 | ---- | ------ | ----------- |
 | `PRODUCTION_MODE` | `on` (default), `off` | Set to `off` when using volume-mounted directories to prevent modified files from getting mangled by **sendfile**! |
 | `NGINX_HOST` | `localhost` (default) | Hostname used by the default server in `/etc/nginx/conf.d/default.conf` |
 | `NGINX_PORT` | `80` (default) | Port used by the default server in `/etc/nginx/conf.d/default.conf` |
+| `ENV_SUBSTITUTE` | `<empty>` (default) | Colon-delimited list of variables to replace in `*.conf.template` files *(the supported variables `$PRODUCTION_MODE:$DEVELOPMENT_MODE:$NGINX_HOST:$NGINX_PORT` are always included)* |
+| `DEVELOPMENT_MODE` | (automatic)<sup>†</sup> | *Set automatically to opposite of `PRODUCTION_MODE`* |
 
 ## License
 ISC © 2014, 2015, 2016, 2017 [Vixlet CA LLC](http://www.vixlet.com/)

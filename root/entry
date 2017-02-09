@@ -4,7 +4,10 @@ if [[ "$PRODUCTION_MODE" == 'off' ]]; then
 else
   export DEVELOPMENT_MODE='off'
 fi
-export ENV_SUBSTITUTE="${ENV_SUBSTITUTE:-'\$PRODUCTION_MODE:\$DEVELOPMENT_MODE:\$NGINX_HOST:\$NGINX_PORT'}"
+if [[ -n "$ENV_SUBSTITUTE" ]]; then
+  export ENV_SUBSTITUTE="$ENV_SUBSTITUTE:"
+fi
+export ENV_SUBSTITUTE="$ENV_SUBSTITUTE\$PRODUCTION_MODE:\$DEVELOPMENT_MODE:\$NGINX_HOST:\$NGINX_PORT"
 echo "Substituting the following environment variables... $ENV_SUBSTITUTE" \
   && ls /etc/nginx/nginx.conf.template | /root/envsubst \
   && ls /etc/nginx/conf.d/*.conf.template | /root/envsubst \
