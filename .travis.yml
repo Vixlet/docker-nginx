@@ -13,5 +13,5 @@ deploy:
   script: docker push vixlet/nginx:alpine
   skip_cleanup: true
   on:
-    branch: alpine
+    branch: master
     repo: Vixlet/docker-nginx
