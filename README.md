@@ -37,6 +37,15 @@ COPY  site.conf /etc/nginx/conf.d/
 COPY  dist /usr/share/nginx/html
 ```
 
+### "Gee zip" edition
+```dockerfile
+FROM  vixlet/nginx:alpine
+RUN  rm /etc/nginx/conf.d/default.conf.template
+RUN  cp /etc/nginx/conf.d/gzip.conf.default /etc/nginx/conf.d/gzip.conf
+COPY  site.conf /etc/nginx/conf.d/
+COPY  dist /usr/share/nginx/html
+```
+
 ## Environment variables
 | Name | Values | Description |
 | ---- | ------ | ----------- |
