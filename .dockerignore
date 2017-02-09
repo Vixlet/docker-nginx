@@ -1,6 +1,4 @@
 .dockerignore
 Dockerfile
 LICENSE
-Makefile
 README.md
-example-site

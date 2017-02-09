@@ -1,0 +1,21 @@
+{
+  "name": "@vixlet/docker-nginx",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Simple Nginx docker image, customizable via environment variables.",
+  "author": "Matt Lubner <matt@vixlet.com>",
+  "contributors": [
+    "Matt Lubner <matt@vixlet.com>"
+  ],
+  "scripts": {
+    "pull": "docker pull vixlet/nginx:alpine",
+    "build": "docker build -t vixlet/nginx:alpine .",
+    "test": "docker run -it --rm vixlet/nginx:alpine /root/test",
+    "shell": "docker run -it --rm vixlet/nginx:alpine /bin/sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vixlet/docker-node.git"
+  },
+  "license": "ISC"
+}

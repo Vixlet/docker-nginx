@@ -1,0 +1,43 @@
+user  nginx;
+worker_processes  1;
+
+worker_rlimit_nofile  1024;
+error_log  /var/log/nginx/error.log  warn;
+pid  /var/run/nginx.pid;
+
+events {
+    multi_accept  on;
+    use  epoll;
+    worker_connections  1024;
+}
+
+http {
+    include       mime.types;
+    default_type  application/octet-stream;
+
+    log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+                      '$status $body_bytes_sent "$http_referer" '
+                      '"$http_user_agent" "$http_x_forwarded_for"';
+
+    access_log  logs/access.log  main;
+
+    port_in_redirect  off;
+
+    # Optimizations are from the following sites
+    # http://tweaked.io/guide/nginx-proxying/
+    # https://www.digitalocean.com/community/tutorials/how-to-optimize-nginx-configuration
+
+    # Set the following to 'on' for production
+    # Set the following to 'off' for local development
+    sendfile  ${PRODUCTION_MODE};
+    tcp_nopush  ${PRODUCTION_MODE};
+    tcp_nodelay  ${PRODUCTION_MODE};
+
+    keepalive_timeout  65;
+    client_body_timeout  12;
+    client_header_timeout  12;
+    send_timeout  10;
+
+    include  /etc/nginx/conf.d/*.conf;
+    include  /etc/nginx/sites-enabled/*.conf;
+}
