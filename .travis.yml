@@ -5,11 +5,9 @@ services:
 cache:
   directories:
   - docker_cache
-# before_install:
-# - sudo rm /usr/local/bin/docker-compose
-# - curl -L https://github.com/docker/compose/releases/download/1.6.0/docker-compose-`uname -s`-`uname -m` > docker-compose
-# - chmod +x docker-compose
-# - sudo mv docker-compose /usr/local/bin
+branches:
+  only:
+  - alpine
 before_script:
 - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
 - npm run pull || true
@@ -21,4 +19,3 @@ deploy:
   script: docker push vixlet/nginx:alpine
   on:
     repo: Vixlet/docker-nginx
-    tags: true
