@@ -12,8 +12,8 @@ docker run -P -v ./dist:/usr/share/nginx/html vixlet/nginx:alpine
 # develop locally by setting PRODUCTION_MODE=off
 docker run -P -v ./dist:/usr/share/nginx/html -e 'PRODUCTION_MODE=off' vixlet/nginx:alpine
 
-# use customize server *.conf by mounting at '/etc/nginx/conf.d'
-docker run -P -v ./dist:/usr/share/nginx/html -v ./conf.d:/etc/nginx/conf.d vixlet/nginx:alpine
+# use customize server *.conf by mounting at '/etc/nginx/sites-enabled'
+docker run -P -v ./dist:/usr/share/nginx/html -v ./sites-enabled:/etc/nginx/sites-enabled vixlet/nginx:alpine
 ```
 
 ### Composed
