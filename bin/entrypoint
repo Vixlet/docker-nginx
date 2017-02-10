@@ -14,5 +14,5 @@ echo "Substituting the following environment variables... $ENV_SUBSTITUTE" \
   && ls /etc/nginx/includes.d/*.conf.template | /root/bin/envsubst \
   && ls /etc/nginx/sites-available/*.conf.template | /root/bin/envsubst \
   && ls /etc/nginx/sites-enabled/*.conf.template | /root/bin/envsubst \
-  && echo "Starting Nginx..." \
+  && echo "Starting..." \
   && if [ "${#}" -lt 1 ]; then exec nginx -g "daemon off;"; else exec "${@}"; fi
