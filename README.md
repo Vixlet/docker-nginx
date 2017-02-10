@@ -13,7 +13,7 @@ docker run -P -v ./dist:/usr/share/nginx/html vixlet/nginx:alpine
 docker run -P -v ./dist:/usr/share/nginx/html -e 'PRODUCTION_MODE=off' vixlet/nginx:alpine
 
 # use customize server *.conf by mounting at '/etc/nginx/conf.d'
-docker run -P -v ./conf.d:/etc/nginx/conf.d -v ./dist:/usr/share/nginx/html vixlet/nginx:alpine
+docker run -P -v ./dist:/usr/share/nginx/html -v ./conf.d:/etc/nginx/conf.d vixlet/nginx:alpine
 ```
 
 ### Basic
