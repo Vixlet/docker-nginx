@@ -16,6 +16,22 @@ docker run -P -v ./dist:/usr/share/nginx/html -e 'PRODUCTION_MODE=off' vixlet/ng
 docker run -P -v ./dist:/usr/share/nginx/html -v ./conf.d:/etc/nginx/conf.d vixlet/nginx:alpine
 ```
 
+### Composed
+```yml
+# use a docker-compose.yml file for easier local development
+web:
+  image: 'vixlet/nginx:alpine'
+  command: '/root/usedefault conf.d/gzip.conf; nginx -g "daemon off;"'
+  ports:
+  - '80:80'
+  volumes:
+  - './dist:/usr/share/nginx/html'
+  - './sites-enabled:/etc/nginx/sites-enabled'
+  environment:
+  - 'NGINX_HOST=example.com'
+  - 'PRODUCTION_MODE=off'
+```
+
 ### Basic
 ```dockerfile
 FROM  vixlet/nginx:alpine
