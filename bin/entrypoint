@@ -9,10 +9,10 @@ if [[ -n "$ENV_SUBSTITUTE" ]]; then
 fi
 export ENV_SUBSTITUTE="$ENV_SUBSTITUTE\$PRODUCTION_MODE:\$DEVELOPMENT_MODE:\$NGINX_HOST:\$NGINX_PORT"
 echo "Substituting the following environment variables... $ENV_SUBSTITUTE" \
-  && ls /etc/nginx/nginx.conf.template | /root/envsubst \
-  && ls /etc/nginx/conf.d/*.conf.template | /root/envsubst \
-  && ls /etc/nginx/includes.d/*.conf.template | /root/envsubst \
-  && ls /etc/nginx/sites-available/*.conf.template | /root/envsubst \
-  && ls /etc/nginx/sites-enabled/*.conf.template | /root/envsubst \
+  && ls /etc/nginx/nginx.conf.template | /root/bin/envsubst \
+  && ls /etc/nginx/conf.d/*.conf.template | /root/bin/envsubst \
+  && ls /etc/nginx/includes.d/*.conf.template | /root/bin/envsubst \
+  && ls /etc/nginx/sites-available/*.conf.template | /root/bin/envsubst \
+  && ls /etc/nginx/sites-enabled/*.conf.template | /root/bin/envsubst \
   && echo "Starting Nginx..." \
   && if [ "${#}" -lt 1 ]; then exec nginx -g "daemon off;"; else exec "${@}"; fi

@@ -21,7 +21,7 @@ docker run -P -v ./dist:/usr/share/nginx/html -v ./conf.d:/etc/nginx/conf.d vixl
 # use a docker-compose.yml file for easier local development
 web:
   image: 'vixlet/nginx:alpine'
-  command: '/root/usedefault conf.d/gzip.conf; nginx -g "daemon off;"'
+  command: 'usedefault conf.d/gzip.conf; nginx -g "daemon off;"'
   ports:
   - '80:80'
   volumes:
@@ -57,7 +57,7 @@ COPY  dist /usr/share/nginx/html
 ```dockerfile
 FROM  vixlet/nginx:alpine
 RUN  rm /etc/nginx/sites-enabled/*.conf.template \
-  && /root/usedefault conf.d/gzip.conf
+  && usedefault conf.d/gzip.conf
 COPY  site.conf /etc/nginx/sites-enabled/
 COPY  dist /usr/share/nginx/html
 ```
@@ -66,7 +66,7 @@ COPY  dist /usr/share/nginx/html
 ```dockerfile
 FROM  vixlet/nginx:alpine
 RUN  rm /etc/nginx/sites-enabled/*.conf.template \
-  && /root/usedefault conf.d/gzip.conf \
+  && usedefault conf.d/gzip.conf \
                       conf.d/proxy.conf
 COPY  site.conf /etc/nginx/sites-enabled/
 COPY  dist /usr/share/nginx/html
@@ -76,7 +76,7 @@ COPY  dist /usr/share/nginx/html
 ```dockerfile
 FROM  vixlet/nginx:alpine
 RUN  rm /etc/nginx/sites-enabled/*.conf.template \
-  && /root/usedefault conf.d/gzip.conf \
+  && usedefault conf.d/gzip.conf \
                       conf.d/proxy.conf \
                       conf.d/cors.conf \
                       includes.d/cors.conf
