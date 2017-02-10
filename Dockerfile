@@ -21,4 +21,5 @@ COPY  sites-enabled/* /etc/nginx/sites-enabled/
 COPY  root/envsubst /root/envsubst
 COPY  root/entry /root/entry
 COPY  root/test /root/test
+COPY  root/usedefault /root/usedefault
 ENTRYPOINT  ["/root/entry"]
