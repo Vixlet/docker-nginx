@@ -1,0 +1,18 @@
+#!/bin/sh
+if [[ "$PRODUCTION_MODE" == 'off' ]]; then
+  export DEVELOPMENT_MODE='on'
+else
+  export DEVELOPMENT_MODE='off'
+fi
+if [[ -n "$ENV_SUBSTITUTE" ]]; then
+  export ENV_SUBSTITUTE="$ENV_SUBSTITUTE:"
+fi
+export ENV_SUBSTITUTE="$ENV_SUBSTITUTE\$PRODUCTION_MODE:\$DEVELOPMENT_MODE:\$NGINX_HOST:\$NGINX_PORT"
+echo "Substituting the following environment variables... $ENV_SUBSTITUTE" \
+  && ls /etc/nginx/nginx.conf.template | /root/bin/envsubst \
+  && ls /etc/nginx/conf.d/*.conf.template | /root/bin/envsubst \
+  && ls /etc/nginx/includes.d/*.conf.template | /root/bin/envsubst \
+  && ls /etc/nginx/sites-available/*.conf.template | /root/bin/envsubst \
+  && ls /etc/nginx/sites-enabled/*.conf.template | /root/bin/envsubst \
+  && echo "Starting..." \
+  && if [ "${#}" -lt 1 ]; then exec nginx -g "daemon off;"; else exec "${@}"; fi

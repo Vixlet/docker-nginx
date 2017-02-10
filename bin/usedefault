@@ -1,0 +1,4 @@
+#!/bin/sh
+for FILE in "$@"; do
+  mv "/etc/nginx/$FILE.default" "/etc/nginx/$FILE"
+done
