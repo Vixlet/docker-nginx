@@ -56,8 +56,8 @@ COPY  dist /usr/share/nginx/html
 ### "Gee zip" edition
 ```dockerfile
 FROM  vixlet/nginx:alpine
-RUN  rm /etc/nginx/sites-enabled/*.conf.template \
-  && usedefault conf.d/gzip.conf
+RUN  rm /etc/nginx/sites-enabled/*.conf.template
+RUN  usedefault conf.d/gzip.conf
 COPY  site.conf /etc/nginx/sites-enabled/
 COPY  dist /usr/share/nginx/html
 ```
@@ -65,9 +65,9 @@ COPY  dist /usr/share/nginx/html
 ### "Series of tubes" edition
 ```dockerfile
 FROM  vixlet/nginx:alpine
-RUN  rm /etc/nginx/sites-enabled/*.conf.template \
-  && usedefault conf.d/gzip.conf \
-                      conf.d/proxy.conf
+RUN  rm /etc/nginx/sites-enabled/*.conf.template
+RUN  usedefault conf.d/gzip.conf \
+                conf.d/proxy.conf
 COPY  site.conf /etc/nginx/sites-enabled/
 COPY  dist /usr/share/nginx/html
 ```
@@ -75,11 +75,11 @@ COPY  dist /usr/share/nginx/html
 ### "Kitchen sink" edition
 ```dockerfile
 FROM  vixlet/nginx:alpine
-RUN  rm /etc/nginx/sites-enabled/*.conf.template \
-  && usedefault conf.d/gzip.conf \
-                      conf.d/proxy.conf \
-                      conf.d/cors.conf \
-                      includes.d/cors.conf
+RUN  rm /etc/nginx/sites-enabled/*.conf.template
+RUN  usedefault conf.d/gzip.conf \
+                conf.d/proxy.conf \
+                conf.d/cors.conf \
+                includes.d/cors.conf
 ENV  ENV_SUBSTITUTE='$MY_VAR_1:$MY_VAR_2'
 COPY  site.conf /etc/nginx/sites-enabled/site.conf.template
 COPY  dist /usr/share/nginx/html
