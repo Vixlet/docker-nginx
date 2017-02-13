@@ -15,7 +15,7 @@
     "test-gzip": "docker run -it --rm vixlet/nginx:alpine /bin/sh -c 'usedefault conf.d/gzip.conf; /root/bin/test'",
     "test-gzip": "docker run -it --rm vixlet/nginx:alpine /bin/sh -c 'usedefault conf.d/gzip.conf; /root/bin/test'",
     "test-proxy": "docker run -it --rm vixlet/nginx:alpine /bin/sh -c 'usedefault conf.d/proxy.conf; /root/bin/test'",
-    "test-cors": "docker run -it --rm vixlet/nginx:alpine /bin/sh -c 'usedefault conf.d/cors.conf; /root/bin/test'",
+    "test-cors": "docker run -it --rm vixlet/nginx:alpine /bin/sh -c 'usedefault conf.d/cors.conf includes.d/cors.conf sites-enabled/cors.conf.template; rm /etc/nginx/sites-enabled/default.conf.template; /root/bin/test'",
     "test-all": "docker run -it --rm vixlet/nginx:alpine /bin/sh -c 'usedefault conf.d/gzip.conf conf.d/proxy.conf conf.d/cors.conf; /root/bin/test'",
     "shell": "docker run -it --rm vixlet/nginx:alpine /bin/sh"
   },
